@@ -1,7 +1,10 @@
-package com.challenge.cubtistic;
+package com.challenge.cubistic;
+
+import lombok.Data;
 
 import java.math.BigDecimal;
 
+@Data
 public class Transaction {
 
     private BigDecimal amount;
