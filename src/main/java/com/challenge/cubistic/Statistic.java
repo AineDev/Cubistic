@@ -1,6 +1,7 @@
 package com.challenge.cubistic;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 
 public class Statistic {
@@ -10,7 +11,20 @@ public class Statistic {
     private BigDecimal min;
     private long count;
 
-    public Statistic() {
+    public Statistic(List<Transaction> transactions) {
+        for (Transaction transaction: transactions) {
+            // TODO: only include if it's been within 60 seconds
+            BigDecimal currAmount = transaction.getAmount();
+            sum.add(currAmount);
+            if (max.compareTo(currAmount) == -1){ // TODO: separate out into separate functions
+                max = currAmount;
+            }
+            if (min.compareTo(currAmount) == 1){
+                min = currAmount;
+            }
+        }
+        count = transactions.size();
+        avg = sum.divide(BigDecimal.valueOf(count));
     }
 
     public Statistic(BigDecimal sum, BigDecimal avg, BigDecimal max, BigDecimal min,

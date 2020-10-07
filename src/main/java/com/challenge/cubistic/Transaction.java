@@ -11,18 +11,17 @@ public class Transaction {
     private String timestamp; // TODO: As String for simplicity, change this later
 
     public Transaction(String amount, String timestamp){
-        this.amount = parseAsBigDecimal(amount);
+        this.amount = new BigDecimal(amount);
+        this.timestamp = parseAsTimestamp(timestamp);
+    }
+    public Transaction(BigDecimal amount, String timestamp){
+        this.amount = amount;
         this.timestamp = parseAsTimestamp(timestamp);
     }
 
-    private BigDecimal parseAsBigDecimal(String amount){
-//        TODO: complete function
-        return null;
-    }
-
     private String parseAsTimestamp(String timestamp){
-//        TODO: complete function
-        return null;
+        // TODO: turn into actual time
+        return timestamp;
     }
 
     public BigDecimal getAmount() {
