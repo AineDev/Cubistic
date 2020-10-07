@@ -1,4 +1,4 @@
-package com.challenge.cubtistic;
+package com.challenge.cubistic;
 
 import java.math.BigDecimal;
 
@@ -10,9 +10,17 @@ public class Statistic {
     private BigDecimal min;
     private long count;
 
-    public Statistic(BigDecimal sum){
+    public Statistic() {
+    }
+
+    public Statistic(BigDecimal sum, BigDecimal avg, BigDecimal max, BigDecimal min,
+                     long count){
         this.sum = sum;
-    } // TODO: finish constructor
+        this.avg = avg;
+        this.max = max;
+        this.min = min;
+        this.count = count;
+    }
 
     public BigDecimal getSum() {
         return sum;
@@ -32,4 +40,14 @@ public class Statistic {
     public long getCount() {
         return count;
     }
+
+//    // Returns statisics computed on the transactions within the last 60
+//    // seconds.
+//    public Statistic getRecentTransactions() { // TODO: return correct statistic
+//        return new Statistic(1, BigDecimal.valueOf(34),
+//                BigDecimal.valueOf(17),
+//                BigDecimal.valueOf(18),
+//                BigDecimal.valueOf(16),
+//                2, "sup");
+//    }
 }
