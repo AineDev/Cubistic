@@ -22,7 +22,6 @@ public class Statistic {
         BigDecimal avg = BigDecimal.valueOf(0);
         for (Transaction transaction: transactions) {
             if (within60Seconds(transaction, now)){
-                // TODO: only include if it's been within 60 seconds
                 BigDecimal currAmount = transaction.getAmount();
                 sum = sum.add(currAmount);
                 if (max.compareTo(currAmount) < 0 | (count == 0)){ // TODO: separate out into separate functions
@@ -84,14 +83,4 @@ public class Statistic {
         return now.minusMinutes(1).isBefore(timestamp)
                 && now.isAfter(timestamp);
     }
-
-//    // Returns statisics computed on the transactions within the last 60
-//    // seconds.
-//    public Statistic getRecentTransactions() { // TODO: return correct statistic
-//        return new Statistic(1, BigDecimal.valueOf(34),
-//                BigDecimal.valueOf(17),
-//                BigDecimal.valueOf(18),
-//                BigDecimal.valueOf(16),
-//                2, "sup");
-//    }
 }

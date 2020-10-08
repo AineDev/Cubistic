@@ -13,6 +13,7 @@ import java.time.ZonedDateTime;
 @Entity
 public class Transaction {
     private @Id @GeneratedValue Long id;
+//    @NotNull@NumberFormat(message = "amount must be a number")
     private BigDecimal amount;
     private ZonedDateTime timestamp; // TODO: As String for simplicity, change this later
 
@@ -33,10 +34,7 @@ public class Transaction {
     public Transaction() {}
 
     private ZonedDateTime parseAsTimestamp(String timestamp){
-        ZonedDateTime time = ZonedDateTime.parse(timestamp);
-
-        // TODO: turn into actual time
-        return time;
+        return ZonedDateTime.parse(timestamp);
     }
 
     public BigDecimal getAmount() {

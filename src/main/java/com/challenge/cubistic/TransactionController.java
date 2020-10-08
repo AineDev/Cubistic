@@ -2,6 +2,7 @@ package com.challenge.cubistic;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,28 +10,47 @@ import java.util.List;
 public class TransactionController {
     List<Transaction> transactions = new ArrayList<Transaction>();
 
+    @ExceptionHandler(value = JsonNotParsableException.class)
     @PostMapping("/transactions")
-    Transaction newTransaction(@RequestBody Transaction newTransaction) {
-        transactions.add(newTransaction);
-        // TODO: return status codes
-        return newTransaction;
+    String newTransaction(@RequestBody Transaction newTransaction) {
+        ZonedDateTime now = ZonedDateTime.now();
+        if (now.isBefore(newTransaction.getTimestamp())){
+            throw new TransactionDateInFutureException();
+        } else {
+            transactions.add(newTransaction);
+            if (within60Seconds(newTransaction, now)){
+                return "201";
+            } else {
+                return "204";
+            }
+        }
     }
+    /*
+● 201 – in case of success
+● 204 – if the transaction is older than 60 seconds
+● 400 – if the JSON is invalid
+● 422 – if any of the fields are not parsable or the transaction date is in the future
+
+     */
 
     @GetMapping("/statistics")
     public Statistic statistic() {
-        System.out.println("size of transactions: " + transactions.size());
-        if (!transactions.isEmpty()){
-            return new Statistic(transactions);
-        } else {
-            throw new TransactionsNotFoundException();
-        }
+        return new Statistic(transactions);
     }
 
     @DeleteMapping("/transactions")
     void deleteTransactions() {
         transactions.clear();
-        return;
         // TODO: return 204 status code
+    }
+
+    /*
+   Returns true if the transaction is within 60 seconds of now
+    */
+    private boolean within60Seconds(Transaction transaction, ZonedDateTime now){
+        ZonedDateTime timestamp = transaction.getTimestamp();
+        return now.minusMinutes(1).isBefore(timestamp)
+                && now.isAfter(timestamp);
     }
 }
 
