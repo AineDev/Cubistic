@@ -1,24 +1,36 @@
 package com.challenge.cubistic;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class TransactionController {
+    List<Transaction> transactions = new ArrayList<Transaction>();
 
     @PostMapping("/transactions")
-    Transaction transaction(@RequestBody Transaction newTransaction) {
+    Transaction newTransaction(@RequestBody Transaction newTransaction) {
+        transactions.add(newTransaction);
         // TODO: return status codes
-        // TODO: save transaction somewhere? Cache?
         return newTransaction;
+    }
+
+    @GetMapping("/statistics")
+    public Statistic statistic() {
+        System.out.println("size of transactions: " + transactions.size());
+        if (!transactions.isEmpty()){
+            return new Statistic(transactions);
+        } else {
+            throw new TransactionsNotFoundException();
+        }
     }
 
     @DeleteMapping("/transactions")
     void deleteTransactions() {
+        transactions.clear();
+        return;
         // TODO: delete all transactions, return 204 status code
-        // TODO: Decide if anything should happen with Statistic
     }
 }
 
