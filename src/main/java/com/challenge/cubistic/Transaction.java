@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.ZonedDateTime;
 
 @Data
@@ -16,12 +17,12 @@ public class Transaction {
     private ZonedDateTime timestamp; // TODO: As String for simplicity, change this later
 
     public Transaction(String amount, String timestamp){
-        this.amount = new BigDecimal(amount);
+        this.amount = new BigDecimal(amount).setScale(2, RoundingMode.CEILING);
         this.timestamp = parseAsTimestamp(timestamp);
     }
 
     public Transaction(BigDecimal amount, String timestamp){
-        this.amount = amount;
+        this.amount = amount.setScale(2, RoundingMode.CEILING);
         this.timestamp = parseAsTimestamp(timestamp);
     }
 
