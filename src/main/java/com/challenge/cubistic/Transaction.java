@@ -17,13 +17,17 @@ public class Transaction {
     private ZonedDateTime timestamp; // TODO: As String for simplicity, change this later
 
     public Transaction(String amount, String timestamp){
-        this.amount = new BigDecimal(amount).setScale(2, RoundingMode.CEILING);
+        this.amount = setScale(new BigDecimal(amount));
         this.timestamp = parseAsTimestamp(timestamp);
     }
 
     public Transaction(BigDecimal amount, String timestamp){
-        this.amount = amount.setScale(2, RoundingMode.CEILING);
+        this.amount = setScale(amount);
         this.timestamp = parseAsTimestamp(timestamp);
+    }
+
+    public BigDecimal setScale(BigDecimal amount){
+        return amount.setScale(2, RoundingMode.HALF_UP);
     }
 
     public Transaction() {}

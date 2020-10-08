@@ -30,7 +30,7 @@ public class TransactionController {
     void deleteTransactions() {
         transactions.clear();
         return;
-        // TODO: delete all transactions, return 204 status code
+        // TODO: return 204 status code
     }
 }
 

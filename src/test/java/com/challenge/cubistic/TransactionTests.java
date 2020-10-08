@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.ZonedDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,7 +33,7 @@ public class TransactionTests {
 
         // Added Zero
         Transaction testTransactionAdd0 = new Transaction("13.9", "2018-07-17T09:59:51.312Z");
-        assertEquals(BigDecimal.valueOf(13.90).setScale(2, RoundingMode.CEILING), testTransactionAdd0.getAmount());
+        assertEquals(testTransaction.setScale(BigDecimal.valueOf(13.90)), testTransactionAdd0.getAmount());
 
         // Negative Amount
         Transaction testTransactionNegativeAmount = new Transaction("-74.98", "2018-07-17T09:59:51.312Z");

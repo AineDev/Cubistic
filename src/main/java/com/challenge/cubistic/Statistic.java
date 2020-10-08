@@ -37,10 +37,10 @@ public class Statistic {
         if (count != 0){
             avg = sum.divide(BigDecimal.valueOf(count), RoundingMode.HALF_UP);
         }
-        this.avg = avg;
-        this.sum = sum;
-        this.max = max;
-        this.min = min;
+        this.avg = setScale(avg);
+        this.sum = setScale(sum);
+        this.max = setScale(max);
+        this.min = setScale(min);
         this.count = count;
     }
 
@@ -51,6 +51,10 @@ public class Statistic {
         this.max = max;
         this.min = min;
         this.count = count;
+    }
+
+    public BigDecimal setScale(BigDecimal amount){
+        return amount.setScale(2, RoundingMode.CEILING);
     }
 
     public BigDecimal getSum() {
