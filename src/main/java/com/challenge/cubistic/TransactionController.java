@@ -20,7 +20,7 @@ public class TransactionController {
     public Statistic statistic() {
         System.out.println("size of transactions: " + transactions.size());
         if (!transactions.isEmpty()){
-            return new Statistic(transactions); // TODO: handle if transactions are empty
+            return new Statistic(transactions);
         } else {
             throw new TransactionsNotFoundException();
         }

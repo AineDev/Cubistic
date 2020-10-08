@@ -1,8 +1,6 @@
 package com.challenge.cubistic;
 
-import java.math.BigDecimal;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TransactionRepository {
-
-    Transaction getByAmount(BigDecimal amount);
+ interface TransactionRepository extends JpaRepository<Transaction, Long> {
 }
