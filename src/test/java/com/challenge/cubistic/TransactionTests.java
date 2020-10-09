@@ -14,10 +14,6 @@ public class TransactionTests {
     @Test
     public void testTransactionConstructor() {
         Transaction testTransaction = new Transaction("73.35", "2018-07-17T09:59:51.312Z");
-
-
-
-        // TODO: uncomment out tests once functions are implemented
         // basic example
 
         assertEquals(BigDecimal.valueOf(73.35), testTransaction.getAmount(), "amount should be 73.35");

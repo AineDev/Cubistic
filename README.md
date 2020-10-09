@@ -13,10 +13,10 @@ Run JAR file: `java -jar target/cubistic-0.0.1-SNAPSHOT.jar`
 
 OR
 
-Run `./mvnw clean spring-boot:run`T
+Run `./mvnw clean spring-boot:run`
 
 Example POST:
-`curl -X POST localhost:8080/transactions -H 'Content-type:application/json' -d '{"amount": "22", "timestamp": "2021-10-08T13:07:00.312Z"}'`
+`curl -X POST localhost:8080/transactions -H 'Content-type:application/json' -d '{"amount": "22", "timestamp": "2019-10-08T13:07:00.312Z"}'`
 
 Example GET:
 `curl -v localhost:8080/statistics`
@@ -26,6 +26,6 @@ Example DELETE:
 
 
 ### Design Decisions
-* currently have statistic as it's own class
+* Statistic as it's own class
   * this will allow statistics to be kept longer if necessary
 
