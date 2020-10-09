@@ -6,26 +6,33 @@
 * The main use case for the API is to calculate real-time statistics for the last 60 seconds of transactions.
 
 
-### To run this project
-Build a JAR file: `./mvnw clean package`
+### Getting Started
+#### Running the application
+ `./mvnw clean spring-boot:run`
 
-Run JAR file: `java -jar target/cubistic-0.0.1-SNAPSHOT.jar`
+#### Run tests 
+`mvn test`
 
-OR
+### Available Endpoints
 
-Run `./mvnw clean spring-boot:run`
+#### POST /transactions
+Create a new transaction. 
 
 Example POST:
 `curl -X POST localhost:8080/transactions -H 'Content-type:application/json' -d '{"amount": "22", "timestamp": "2019-10-08T13:07:00.312Z"}'`
 
+#### GET /statistics
+Returns the statistics computed on the transactions within the last 60 seconds. 
+
 Example GET:
 `curl -v localhost:8080/statistics`
+
+#### DELETE /transactions
+causes all existing transactions to be deleted 
 
 Example DELETE:
 `curl -v -X DELETE localhost:8080/transactions`  
 
 
 ### Design Decisions
-* Statistic as it's own class
-  * this will allow statistics to be kept longer if necessary
 

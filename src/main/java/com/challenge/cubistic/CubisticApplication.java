@@ -11,5 +11,3 @@ public class CubisticApplication {
 	}
 
 }
-
-// TODO: handle exception here?

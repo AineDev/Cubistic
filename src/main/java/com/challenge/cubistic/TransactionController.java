@@ -25,13 +25,6 @@ public class TransactionController {
             }
         }
     }
-    /*
-● 201 – in case of success
-● 204 – if the transaction is older than 60 seconds
-● 400 – if the JSON is invalid
-● 422 – if any of the fields are not parsable or the transaction date is in the future
-
-     */
 
     @GetMapping("/statistics")
     public Statistic statistic() {
@@ -39,9 +32,9 @@ public class TransactionController {
     }
 
     @DeleteMapping("/transactions")
-    void deleteTransactions() {
+    String deleteTransactions() {
         transactions.clear();
-        // TODO: return 204 status code
+        return "204";
     }
 
     /*

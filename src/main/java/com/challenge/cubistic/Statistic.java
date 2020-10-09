@@ -24,7 +24,7 @@ public class Statistic {
             if (within60Seconds(transaction, now)){
                 BigDecimal currAmount = transaction.getAmount();
                 sum = sum.add(currAmount);
-                if (max.compareTo(currAmount) < 0 | (count == 0)){ // TODO: separate out into separate functions
+                if (max.compareTo(currAmount) < 0 | (count == 0)){
                     max = currAmount;
                 }
                 if ((min.compareTo(currAmount) > 0) | (count == 0)){
@@ -40,15 +40,6 @@ public class Statistic {
         this.sum = setScale(sum);
         this.max = setScale(max);
         this.min = setScale(min);
-        this.count = count;
-    }
-
-    public Statistic(BigDecimal sum, BigDecimal avg, BigDecimal max, BigDecimal min,
-                     long count){
-        this.sum = sum;
-        this.avg = avg;
-        this.max = max;
-        this.min = min;
         this.count = count;
     }
 
