@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-class TransactionNotFoundAdvice {
+class TransactionDateInFutureAdvice {
 
     @ResponseBody
-    @ExceptionHandler(TransactionsNotFoundException.class)
+    @ExceptionHandler(TransactionDateInFutureException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String transactionNotFoundHandler(TransactionsNotFoundException ex) {
+    String transactionNotFoundHandler(TransactionDateInFutureException ex) {
         return ex.getMessage();
     }
 }
