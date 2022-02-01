@@ -1,8 +1,7 @@
 # Cubistic
 
 
-### RESTful API for N26 statistics
-**A N26 Junior Software Engineer Coding Challenge**
+### RESTful API for bank statistics
 * The main use case for the API is to calculate real-time statistics for the last 60 seconds of transactions.
 
 
